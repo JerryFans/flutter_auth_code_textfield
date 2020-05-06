@@ -1,3 +1,7 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - (2020.5.6)
 
-* TODO: Describe initial release.
+发布第一个版本
+
+## [0.0.2] - (2020.5.6)
+
+完善一些日志信息，删除一些不必要的注释

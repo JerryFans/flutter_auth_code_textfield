@@ -56,6 +56,7 @@ class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
                   height: 25,
                 ),
                 AuthCodeTextfield(
+                  mode: AuthCodeMode.singleItem,
                   itemWidth: 50,
                   itemHeight: 50,
                   itemSpacing: 35 * scaleWidth,
