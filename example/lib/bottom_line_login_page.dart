@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth_code_textfield/auth_code_textfield.dart';
+import 'package:auth_code_textfield/auth_code_textfield.dart';
 import 'package:flutter/services.dart';
 
 class BottomLineLoginPage extends StatefulWidget {
