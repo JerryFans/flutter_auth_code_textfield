@@ -68,6 +68,11 @@ Add this to your package's pubspec.yaml file:
 dependencies:
   auth_code_textfield: ^0.0.2
 
+If you want to support flutter 2.0 null safety please:
+
+dependencies:
+  auth_code_textfield: ^2.0.0
+
 This project is a starting point for a Dart
 [package](https://flutter.dev/developing-packages/),
 a library module containing code that can be shared easily across

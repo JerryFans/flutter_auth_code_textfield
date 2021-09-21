@@ -1,12 +1,16 @@
 name: auth_code_textfield
 description: A custom auth code textfield widget.
-version: 0.0.2
+version: 2.0.0
 authors: 
   - JerryFans<fanjiarong_haohao@163.com>
 homepage: https://github.com/JerryFans/flutter_auth_code_textfield
 
+analyzer:
+  enable-experiment:
+  - non-nullable
+
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:

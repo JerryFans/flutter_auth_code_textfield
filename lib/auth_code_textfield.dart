@@ -28,10 +28,10 @@ class AuthCodeTextfield extends StatefulWidget {
   final Color  cursorColor;
   final Color  textColor;
   final double fontSize;
-  final ValueChanged onChanged;
+  final ValueChanged? onChanged;
 
   AuthCodeTextfield(
-      {Key key,
+      {Key? key,
       this.length = AuthCodeLength.four,
       this.mode = AuthCodeMode.singleItem,
       this.itemWidth = 50.0,
@@ -58,7 +58,7 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
   String inputText = '';
   FocusNode _currentFocus = FocusNode();
   bool _visibleCursor = false;
-  Timer _timer;
+  Timer? _timer;
 
   List<Widget> getTextListWidget() {
     List<Widget> list = [];
@@ -171,7 +171,7 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
               focusNode: _currentFocus,
               showCursor: false,
               inputFormatters: <TextInputFormatter>[
-                    WhitelistingTextInputFormatter.digitsOnly,
+                    FilteringTextInputFormatter.digitsOnly,
                     LengthLimitingTextInputFormatter(getNumLenth())
                   ],
               decoration: InputDecoration(
@@ -183,9 +183,7 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
               style: TextStyle(
                   fontSize: 16.0, color: Colors.transparent,),
               onChanged: (s) {
-                if (widget.onChanged != null) {
-                  widget.onChanged(s);
-                }
+                widget.onChanged?.call(s);
                 setState(() {
                   inputText = s;
                 });

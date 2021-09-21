@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         brightness: Brightness.dark,
-        title: Text(widget.title),
+        title: Text(widget.title ?? ""),
       ),
       body: Center(
         child: Column(
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: 200,
               height: 44,
-              child: RaisedButton(
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: 200,
               height: 44,
-              child: RaisedButton(
+              child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                       context,

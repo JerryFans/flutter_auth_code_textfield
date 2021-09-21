@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_code_textfield/auth_code_textfield.dart';
 
 class ItemLoginDemoPage extends StatefulWidget {
-  final ValueChanged onSubmited;
-  ItemLoginDemoPage({Key key, this.onSubmited}) : super(key: key);
+  final ValueChanged? onSubmited;
+  ItemLoginDemoPage({Key? key, this.onSubmited}) : super(key: key);
 
   @override
   _ItemLoginDemoPageState createState() => _ItemLoginDemoPageState();
@@ -62,7 +63,7 @@ class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
                   itemSpacing: 35 * scaleWidth,
                   itemBackgroundColor: Color.fromRGBO(120, 114, 127, 1),
                   textColor: Colors.white,
-                  cursorColor: Color.fromRGBO(94,178,138,1),
+                  cursorColor: Color.fromRGBO(94, 178, 138, 1),
                   onChanged: (s) {
                     setState(() {
                       _inputText = s;
@@ -75,21 +76,19 @@ class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
                 Container(
                   width: 50 * 4 + (35 * scaleWidth * 3),
                   height: 44,
-                  child: FlatButton(
+                  child: CupertinoButton(
+                    disabledColor: Color.fromRGBO(54, 127, 105, 1),
+                    color: Color.fromRGBO(33, 191, 125, 1),
                     padding: EdgeInsets.zero,
+                    borderRadius: BorderRadius.all(Radius.circular(22)),
                     onPressed: _inputText.length >= 4
                         ? () {
                             if (widget.onSubmited != null) {
-                              widget.onSubmited(_inputText);
+                              widget.onSubmited?.call(_inputText);
                             }
                             Navigator.pop(context);
                           }
                         : null,
-                    disabledColor: Color.fromRGBO(54, 127, 105, 1),
-                    splashColor: Colors.transparent,
-                    color: Color.fromRGBO(33, 191, 125, 1),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(22))),
                     child: Text(
                       '确定',
                       style: TextStyle(fontSize: 17, color: Colors.white),

@@ -3,8 +3,8 @@ import 'package:auth_code_textfield/auth_code_textfield.dart';
 import 'package:flutter/services.dart';
 
 class BottomLineLoginPage extends StatefulWidget {
-  final ValueChanged onSubmited;
-  BottomLineLoginPage({Key key, this.onSubmited}) : super(key: key);
+  final ValueChanged? onSubmited;
+  BottomLineLoginPage({Key? key, this.onSubmited}) : super(key: key);
 
   @override
   _BottomLineLoginPageState createState() => _BottomLineLoginPageState();
@@ -78,7 +78,7 @@ class _BottomLineLoginPageState extends State<BottomLineLoginPage> {
                   onChanged: (s) {
                     _inputText = s;
                     if (s.toString().length >= 4 && widget.onSubmited != null) {
-                      widget.onSubmited(_inputText);
+                      widget.onSubmited?.call(_inputText);
                       Navigator.pop(context);
                     }
                   },
