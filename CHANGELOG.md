@@ -9,3 +9,7 @@
 ## [2.0.0] - (2021.9.21)
 
 support 2.0 null safety
+
+## [2.0.1] - (2022.2.21)
+
+support border colod and border width

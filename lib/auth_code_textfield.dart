@@ -28,6 +28,8 @@ class AuthCodeTextfield extends StatefulWidget {
   final Color  cursorColor;
   final Color  textColor;
   final double fontSize;
+  final double borderWidth;
+  final Color  borderColor;
   final ValueChanged? onChanged;
 
   AuthCodeTextfield(
@@ -46,6 +48,8 @@ class AuthCodeTextfield extends StatefulWidget {
       this.cursorColor = Colors.blue,
       this.textColor = Colors.black,
       this.fontSize = 25,
+      this.borderWidth = 0.0,
+      this.borderColor = Colors.grey,
       this.onChanged})
       :
       super(key: key);
@@ -99,7 +103,12 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
             borderRadius: widget.mode == AuthCodeMode.singleItem ? BorderRadius.circular(widget.itemBorderRadius) : null,
             border: widget.mode == AuthCodeMode.bottomLine ? Border(
               bottom: BorderSide(color: widget.itemBottomLineColor,width: widget.itemBottomLineWidth),
-            ) : null,
+            ) : (widget.borderWidth > 0 ? Border(
+              bottom: BorderSide(color: widget.borderColor,width: widget.borderWidth),
+              top: BorderSide(color: widget.borderColor,width: widget.borderWidth),
+              left: BorderSide(color: widget.borderColor,width: widget.borderWidth),
+              right: BorderSide(color: widget.borderColor,width: widget.borderWidth),
+            ) : null),
           ),
           alignment: Alignment.center,
           width: widget.itemWidth,
