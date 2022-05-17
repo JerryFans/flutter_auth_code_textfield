@@ -30,7 +30,7 @@ AuthCodeTextfield(
 
 iOS            |  Android
 :-------------------------:|:-------------------------:
-![](http://image.jerryfans.com/mode1.png)  |  ![](http://image.jerryfans.com/mode3.png)
+![](https://github.com/JerryFans/flutter_auth_code_textfield/raw/master/mode1.png)  |  ![](https://github.com/JerryFans/flutter_auth_code_textfield/raw/master/mode3.png)
 
 Mode: bottomLine , like DingDing 
 
@@ -57,7 +57,7 @@ AuthCodeTextfield(
 
 iOS            |  Android
 :-------------------------:|:-------------------------:
-![](http://image.jerryfans.com/mode2.png)  |  ![](http://image.jerryfans.com/mode5.png)
+![](https://github.com/JerryFans/flutter_auth_code_textfield/raw/master/mode2.png)  |  ![](https://github.com/JerryFans/flutter_auth_code_textfield/raw/master/mode5.png)
 
 
 
