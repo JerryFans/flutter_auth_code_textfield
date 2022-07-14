@@ -28,6 +28,7 @@ class AuthCodeTextfield extends StatefulWidget {
   final double? cursorBottomOffset; //cursor bottom offset, if nil default is center
   final Color cursorColor;
   final Color textColor;
+  final FontWeight? fontWeight;
   final double fontSize;
   final double borderWidth;
   final Color borderColor;
@@ -52,7 +53,8 @@ class AuthCodeTextfield extends StatefulWidget {
       this.borderWidth = 0.0,
       this.borderColor = Colors.grey,
       this.onChanged, 
-      this.cursorBottomOffset})
+      this.cursorBottomOffset, 
+      this.fontWeight})
       : super(key: key);
 
   @override
@@ -84,7 +86,7 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
           child: Text(
             s,
             style:
-                TextStyle(fontSize: widget.fontSize, color: widget.textColor),
+                TextStyle(fontSize: widget.fontSize, color: widget.textColor, fontWeight: widget.fontWeight),
           ),
         ),
       );

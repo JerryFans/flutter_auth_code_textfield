@@ -17,3 +17,7 @@ support border colod and border width
 ## [2.0.2] - (2022.7.14)
 
 add cursor bottom offset property, if null, default cursor pos is center vertical
+
+## [2.0.3] - (2022.7.14)
+
+add fontweight property
