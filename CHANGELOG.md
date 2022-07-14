@@ -13,3 +13,7 @@ support 2.0 null safety
 ## [2.0.1] - (2022.2.21)
 
 support border colod and border width
+
+## [2.0.2] - (2022.7.14)
+
+add cursor bottom offset property, if null, default cursor pos is center vertical

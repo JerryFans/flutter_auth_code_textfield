@@ -21,15 +21,16 @@ class AuthCodeTextfield extends StatefulWidget {
   final double itemSpacing;
   final double itemBorderRadius;
   final double itemBottomLineWidth;
-  final Color  itemBackgroundColor;
-  final Color  itemBottomLineColor;
-  final double cursorWidth;//光标宽，如果宽>高，会是一个水平的光标，如果宽<高，就是常规竖直的光标
-  final double cursorHeight;//光标高
-  final Color  cursorColor;
-  final Color  textColor;
+  final Color itemBackgroundColor;
+  final Color itemBottomLineColor;
+  final double cursorWidth; //光标宽，如果宽>高，会是一个水平的光标，如果宽<高，就是常规竖直的光标
+  final double cursorHeight; //光标高
+  final double? cursorBottomOffset; //cursor bottom offset, if nil default is center
+  final Color cursorColor;
+  final Color textColor;
   final double fontSize;
   final double borderWidth;
-  final Color  borderColor;
+  final Color borderColor;
   final ValueChanged? onChanged;
 
   AuthCodeTextfield(
@@ -50,9 +51,9 @@ class AuthCodeTextfield extends StatefulWidget {
       this.fontSize = 25,
       this.borderWidth = 0.0,
       this.borderColor = Colors.grey,
-      this.onChanged})
-      :
-      super(key: key);
+      this.onChanged, 
+      this.cursorBottomOffset})
+      : super(key: key);
 
   @override
   _AuthCodeTextfieldState createState() => _AuthCodeTextfieldState();
@@ -70,8 +71,10 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
       var s = inputText[i];
       if (i != 0) {
         list.add(
-          SizedBox(width: widget.itemSpacing,),
-        );    
+          SizedBox(
+            width: widget.itemSpacing,
+          ),
+        );
       }
       list.add(
         Container(
@@ -80,7 +83,8 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
           height: widget.itemHeight,
           child: Text(
             s,
-            style: TextStyle(fontSize: widget.fontSize,color: widget.textColor),
+            style:
+                TextStyle(fontSize: widget.fontSize, color: widget.textColor),
           ),
         ),
       );
@@ -93,22 +97,40 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
     for (int i = 0; i < getNumLenth(); i++) {
       if (i != 0) {
         list.add(
-          SizedBox(width: widget.itemSpacing,),
-        );    
+          SizedBox(
+            width: widget.itemSpacing,
+          ),
+        );
       }
       list.add(
         Container(
           decoration: BoxDecoration(
             color: widget.itemBackgroundColor,
-            borderRadius: widget.mode == AuthCodeMode.singleItem ? BorderRadius.circular(widget.itemBorderRadius) : null,
-            border: widget.mode == AuthCodeMode.bottomLine ? Border(
-              bottom: BorderSide(color: widget.itemBottomLineColor,width: widget.itemBottomLineWidth),
-            ) : (widget.borderWidth > 0 ? Border(
-              bottom: BorderSide(color: widget.borderColor,width: widget.borderWidth),
-              top: BorderSide(color: widget.borderColor,width: widget.borderWidth),
-              left: BorderSide(color: widget.borderColor,width: widget.borderWidth),
-              right: BorderSide(color: widget.borderColor,width: widget.borderWidth),
-            ) : null),
+            borderRadius: widget.mode == AuthCodeMode.singleItem
+                ? BorderRadius.circular(widget.itemBorderRadius)
+                : null,
+            border: widget.mode == AuthCodeMode.bottomLine
+                ? Border(
+                    bottom: BorderSide(
+                        color: widget.itemBottomLineColor,
+                        width: widget.itemBottomLineWidth),
+                  )
+                : (widget.borderWidth > 0
+                    ? Border(
+                        bottom: BorderSide(
+                            color: widget.borderColor,
+                            width: widget.borderWidth),
+                        top: BorderSide(
+                            color: widget.borderColor,
+                            width: widget.borderWidth),
+                        left: BorderSide(
+                            color: widget.borderColor,
+                            width: widget.borderWidth),
+                        right: BorderSide(
+                            color: widget.borderColor,
+                            width: widget.borderWidth),
+                      )
+                    : null),
           ),
           alignment: Alignment.center,
           width: widget.itemWidth,
@@ -126,22 +148,20 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
         length = 4;
         break;
       case AuthCodeLength.six:
-       length = 6;
-       break;
+        length = 6;
+        break;
       case AuthCodeLength.eight:
-       length = 8;
-       break;
+        length = 8;
+        break;
     }
     return length;
   }
 
-
-
   @override
   void initState() {
     _timer = Timer.periodic(Duration(milliseconds: 650), (Timer timer) {
-       _visibleCursor = !_visibleCursor;
-       setState(() {});
+      _visibleCursor = !_visibleCursor;
+      setState(() {});
     });
     super.initState();
   }
@@ -154,8 +174,10 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
 
   @override
   Widget build(BuildContext context) {
-    double mainWidth = widget.itemWidth * getNumLenth() + widget.itemSpacing * (getNumLenth() - 1);
-    double cursorPaddingLeft = (widget.itemWidth - widget.cursorWidth) / 2 + (inputText.length * (widget.itemWidth + widget.itemSpacing));
+    double mainWidth = widget.itemWidth * getNumLenth() +
+        widget.itemSpacing * (getNumLenth() - 1);
+    double cursorPaddingLeft = (widget.itemWidth - widget.cursorWidth) / 2 +
+        (inputText.length * (widget.itemWidth + widget.itemSpacing));
     return Container(
       alignment: Alignment.center,
       width: mainWidth,
@@ -180,9 +202,9 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
               focusNode: _currentFocus,
               showCursor: false,
               inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(getNumLenth())
-                  ],
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(getNumLenth())
+              ],
               decoration: InputDecoration(
                 border: InputBorder.none,
                 counterText: '',
@@ -190,7 +212,9 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
               maxLength: getNumLenth(),
               keyboardType: TextInputType.number,
               style: TextStyle(
-                  fontSize: 16.0, color: Colors.transparent,),
+                fontSize: 16.0,
+                color: Colors.transparent,
+              ),
               onChanged: (s) {
                 widget.onChanged?.call(s);
                 setState(() {
@@ -199,19 +223,23 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
               },
             ),
           ),
-          Visibility(
-            visible: _visibleCursor,
-            child: Padding(
-            padding: EdgeInsets.only(left:cursorPaddingLeft),
-            child: Container(
-                width: widget.cursorWidth,
-                height: widget.cursorHeight,
-                decoration: BoxDecoration(
-                  color: widget.cursorColor,
-                  borderRadius: BorderRadius.circular(widget.cursorWidth / 2),
+          Positioned(
+            bottom: widget.cursorBottomOffset,
+            child: Visibility(
+              visible: _visibleCursor,
+              child: Padding(
+                padding: EdgeInsets.only(left: cursorPaddingLeft),
+                child: Container(
+                  width: widget.cursorWidth,
+                  height: widget.cursorHeight,
+                  decoration: BoxDecoration(
+                    color: widget.cursorColor,
+                    borderRadius: BorderRadius.circular(widget.cursorWidth / 2),
+                  ),
                 ),
               ),
-          ),),
+            ),
+          ),
         ],
       ),
     );
