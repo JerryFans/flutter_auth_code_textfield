@@ -33,6 +33,9 @@ class AuthCodeTextfield extends StatefulWidget {
   final double borderWidth;
   final Color borderColor;
   final ValueChanged? onChanged;
+  final bool autofocus;
+  final FocusNode? focusNode;
+  final TextEditingController? controller;
 
   AuthCodeTextfield(
       {Key? key,
@@ -54,7 +57,10 @@ class AuthCodeTextfield extends StatefulWidget {
       this.borderColor = Colors.grey,
       this.onChanged, 
       this.cursorBottomOffset, 
-      this.fontWeight})
+      this.fontWeight, 
+      this.autofocus = true, 
+      this.focusNode, 
+      this.controller})
       : super(key: key);
 
   @override
@@ -200,8 +206,9 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
           Center(
             child: TextField(
               enableInteractiveSelection: false,
-              autofocus: true,
-              focusNode: _currentFocus,
+              controller: widget.controller,
+              autofocus: widget.autofocus,
+              focusNode: widget.focusNode != null ? widget.focusNode : _currentFocus,
               showCursor: false,
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly,

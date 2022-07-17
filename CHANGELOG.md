@@ -21,3 +21,7 @@ add cursor bottom offset property, if null, default cursor pos is center vertica
 ## [2.0.3] - (2022.7.14)
 
 add fontweight property
+
+## [2.0.4] - (2022.7.17)
+
+add autofocus,controller,focusNode property
