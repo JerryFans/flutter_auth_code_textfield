@@ -15,6 +15,12 @@ class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
   TextEditingController controller = TextEditingController();
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double scaleWidth = MediaQuery.of(context).size.width / 414;
     return Scaffold(

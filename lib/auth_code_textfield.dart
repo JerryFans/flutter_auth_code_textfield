@@ -185,7 +185,9 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
   @override
   void dispose() {
     _timer?.cancel();
-    widget.controller?.dispose();
+    if (widget.focusNode == null) {
+      _currentFocus.dispose();
+    }
     super.dispose();
   }
 
