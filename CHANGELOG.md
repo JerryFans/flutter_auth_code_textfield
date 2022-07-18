@@ -25,3 +25,7 @@ add fontweight property
 ## [2.0.4] - (2022.7.17)
 
 add autofocus,controller,focusNode property
+
+## [2.0.5] - (2022.7.18)
+
+fix some issue when add controller property.

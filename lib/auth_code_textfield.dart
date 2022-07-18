@@ -171,6 +171,14 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
       _visibleCursor = !_visibleCursor;
       setState(() {});
     });
+    widget.controller?.addListener(() { 
+      if (widget.controller?.text != null) {
+        widget.onChanged?.call(widget.controller!.text);
+        setState(() {
+            inputText = widget.controller!.text;
+        });
+      }
+    });
     super.initState();
   }
 
@@ -225,6 +233,9 @@ class _AuthCodeTextfieldState extends State<AuthCodeTextfield> {
                 color: Colors.transparent,
               ),
               onChanged: (s) {
+                if (widget.controller != null) {
+                  return;
+                }
                 widget.onChanged?.call(s);
                 setState(() {
                   inputText = s;

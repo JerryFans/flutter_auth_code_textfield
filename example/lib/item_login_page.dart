@@ -12,6 +12,7 @@ class ItemLoginDemoPage extends StatefulWidget {
 
 class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
   String _inputText = '';
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +59,7 @@ class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
                 ),
                 AuthCodeTextfield(
                   mode: AuthCodeMode.singleItem,
+                  controller: controller,
                   itemWidth: 50,
                   itemHeight: 50,
                   itemSpacing: 35 * scaleWidth,
@@ -68,6 +70,9 @@ class _ItemLoginDemoPageState extends State<ItemLoginDemoPage> {
                     setState(() {
                       _inputText = s;
                     });
+                    if (s.length == 4) {
+                      controller.text = '';
+                    }
                   },
                 ),
                 SizedBox(
