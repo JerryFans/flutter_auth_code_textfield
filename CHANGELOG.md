@@ -29,3 +29,7 @@ add autofocus,controller,focusNode property
 ## [2.0.5] - (2022.7.18)
 
 fix some issue when add controller property.
+
+## [2.0.6] - (2022.7.18)
+
+fix some issue
